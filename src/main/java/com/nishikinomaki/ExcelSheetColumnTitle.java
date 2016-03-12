@@ -1,8 +1,7 @@
 package com.nishikinomaki;
 /**
- * Copyright by fenqile.com
  *
- * @author Jax
+ * @author nishikinomaki
  * @version 2016/3/11.
  *
  * @see {https://leetcode.com/problems/excel-sheet-column-title/}
