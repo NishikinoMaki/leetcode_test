@@ -1,3 +1,4 @@
+package com.nishikinomaki;
 /**
  * Copyright by fenqile.com
  *
@@ -18,6 +19,8 @@
     26 -> Z
     27 -> AA
     28 -> AB
+
+    解题关键:26进制
  */
 public class ExcelSheetColumnTitle {
 
