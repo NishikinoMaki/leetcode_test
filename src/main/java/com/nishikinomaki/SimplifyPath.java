@@ -1,5 +1,6 @@
 package com.nishikinomaki;
 
+import java.util.Iterator;
 import java.util.Stack;
 
 
@@ -33,31 +34,51 @@ import java.util.Stack;
  */
 public class SimplifyPath {
 
-    private final static String SPIRIT = "/";
-    private final static String PARENT_DIR = "..";
+    private static final char SPIRIT = '/';
+    private static final String PARENT_DIR = "..";
+    private static final String DOT = ".";
 
     public String simplifyPath(String path) {
         if(path == null){
             return null;
         }
-        Stack<String> stack = new Stack<String>();
+        Stack<String> stack = new Stack<>();
         char[] pathCharArray = path.toCharArray();
         for (int i = 0; i < pathCharArray.length ;) {
-            String c = "" + pathCharArray[i];
-            if(SPIRIT.equals(c)){//如果是"/"则跳过
-                i ++;
+            while ( i < pathCharArray.length && SPIRIT == pathCharArray[i]){
+                //如果是"/"则跳过
+                ++ i;
             }
-            String dirname = "";
+            StringBuilder dirname = new StringBuilder();
+            while ( i < pathCharArray.length && SPIRIT != pathCharArray[i]){
+                dirname.append(pathCharArray[i++]);
+            }
+            if(PARENT_DIR.equals(dirname.toString())){
+                if(!stack.isEmpty()) {
+                    stack.pop(); // "..则出栈"
+                }
+            }
+            else if(!DOT.equals(dirname.toString()) && !"".equals(dirname.toString())){
+                stack.push(dirname.toString());
+            }
         }
-        return null;
+        if(stack.isEmpty()){
+            return "/";
+        }
+        StringBuilder realPath = new StringBuilder();
+        for(Iterator<String> i = stack.iterator(); i.hasNext(); ){
+            realPath.append(SPIRIT).append(i.next());
+        }
+        return realPath.toString();
     }
 
     public static void main(String[] args) {
-        //String path = "/home/product/server_java/";
+        String path = "/home/product/server_java/";
         //String path = "/";
-        String path = "/home/";
+//        String path = "/home/";
+//        String path = "/a/./b/../../c/";
         SimplifyPath simplifyPath = new SimplifyPath();
-
         System.out.println(simplifyPath.simplifyPath(path));
+
     }
 }
