@@ -5,7 +5,7 @@ package com.nishikinomaki;
  * @version 2016/3/11.
  *
  * @see {https://leetcode.com/problems/excel-sheet-column-title/}
- * 168. Excel Sheet Column Title My Submissions Question
+ * 168. Excel Sheet Column Title My Submissions Questio
  *
     Given a positive integer, return its corresponding column title as appear in an Excel sheet.
 
